@@ -1,0 +1,27 @@
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+</head>
+
+<body>
+  <input type="button" value="送出" onclick="POSTER()" />
+  <textarea id="TA"></textarea>
+</body>
+<script>
+  function POSTER() {
+      let encodeVALUE = '<A>CCCC</A>';
+      encodeVALUE = decodeURI(encodeVALUE);
+
+      $.post('http://localhost:8081/', encodeVALUE, function(data) {
+        const res = data;
+        //xml解讀
+        const xml = new XMLSerializer().serializeToString(res);
+        //將API回復的內容放進TextAeraRESPONs內
+        console.log(xml);
+      });
+    }
+</script>
+
+</html>
